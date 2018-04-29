@@ -12,9 +12,6 @@ class Vertex:
         self.in_edges = {}
         self.out_edges = {}
 
-    def increase_length(self):
-        self.length += 1
-
     def increase_coverage(self):
         self.coverage += 1
 
@@ -25,6 +22,9 @@ class Edge:
         self.seq = k1 + k2[-1]
         self.n = 2
         self.coverage = 0
+
+    def increase_length(self):
+        self.length += 1
 
     def calc_coverage(self, c1, c2):
         self.coverage = (c1 + c2) / 2
@@ -88,13 +88,11 @@ class Graph:
             for vert in self.vertices.keys():
                 graph_deb.node(self.vertices[vert].seq, str(self.vertices[vert].coverage))
                 for edge in self.vertices[vert].out_edges.keys():
-                    edge_label = str(self.vertices[vert].out_edges[edge][0].length) + ', ' + str(self.vertices[vert].out_edges[edge][0].coverage)
+                    edge_label = str(self.vertices[vert].out_edges[edge][0].coverage)
                     graph_deb.edge(vert, edge, label=edge_label)
 
         print(graph_deb)
         print(graph_deb.source)
-
-        #self.graph_code = graph_deb
         graph_deb.view()
         graph_deb.save()
 
@@ -124,6 +122,6 @@ if __name__ == '__main__':
         for e in my_graph.vertices[v].in_edges:
             print('-> In edge: {}'.format(e))
 
-    my_graph.graph_vis(status='c')
+    my_graph.graph_vis(status='f')
 
     #default is cut, for full: status='f'
