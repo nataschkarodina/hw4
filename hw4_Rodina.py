@@ -88,10 +88,8 @@ class Graph:
             for vert in self.vertices.keys():
                 graph_deb.node(self.vertices[vert].seq, str(self.vertices[vert].coverage))
                 for edge in self.vertices[vert].out_edges.keys():
-                    edge_label = str(self.vertices[vert].out_edges[edge][0].length) + ', ' + str(
-                        self.vertices[vert].out_edges[edge][0].coverage)
+                    edge_label = str(self.vertices[vert].out_edges[edge][0].length) + ', ' + str(self.vertices[vert].out_edges[edge][0].coverage)
                     graph_deb.edge(vert, edge, label=edge_label)
-                    Edge
 
         print(graph_deb)
         print(graph_deb.source)
