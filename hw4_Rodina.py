@@ -60,10 +60,6 @@ class Graph:
             new_edge = Edge(kmer, next_kmer)
 
             # vertices
-            # if kmer in self.vertices[next_kmer].in_edges.keys():
-            #     self.vertices[next_kmer].in_edges[kmer][0].increase_length()
-            #     self.vertices[kmer].out_edges[next_kmer][0].increase_length()
-            # else:
             self.vertices[next_kmer].in_edges[kmer] = [new_edge]
             self.vertices[kmer].out_edges[next_kmer] = [new_edge]
 
@@ -92,8 +88,10 @@ class Graph:
             for vert in self.vertices.keys():
                 graph_deb.node(self.vertices[vert].seq, str(self.vertices[vert].coverage))
                 for edge in self.vertices[vert].out_edges.keys():
-                    edge_label = str(self.vertices[vert].out_edges[edge][0].length) + ', ' + str(self.vertices[vert].out_edges[edge][0].coverage)
+                    edge_label = str(self.vertices[vert].out_edges[edge][0].length) + ', ' + str(
+                        self.vertices[vert].out_edges[edge][0].coverage)
                     graph_deb.edge(vert, edge, label=edge_label)
+                    Edge
 
         print(graph_deb)
         print(graph_deb.source)
@@ -128,6 +126,6 @@ if __name__ == '__main__':
         for e in my_graph.vertices[v].in_edges:
             print('-> In edge: {}'.format(e))
 
-    my_graph.graph_vis(status='f')
+    my_graph.graph_vis(status='c')
 
     #default is cut, for full: status='f'
